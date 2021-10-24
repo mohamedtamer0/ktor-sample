@@ -14,7 +14,7 @@ fun main() {
         install(ContentNegotiation){
             json()
         }
-
+        //MYSQL
         val database = Database.connect(
             url = "jdbc:mysql://localhost:3306/notes",
             driver = "com.mysql.cj.jdbc.Driver",
