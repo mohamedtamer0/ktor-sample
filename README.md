@@ -275,7 +275,49 @@ The Result in PostMan
 
 ```
 
+==================================================
+
+- Ktor Response - Downloading a File
+
+-- Step one
+```code
+1- First create a New Directory name = files
+2- add some photo in file
+```
+
+-- Step Two
+
+- Routing.kt
+
+```kotlin
+        // Ktor Response - Downloading a File
+        get("/fileDownload") {
+            val file = File("files/pic.png")
+
+            call.response.header(
+                HttpHeaders.ContentDisposition,
+                ContentDisposition.Attachment.withParameter(
+                    ContentDisposition.Parameters.FileName, "pic.png"
+                ).toString()
+            )
+            call.respondFile(file)
+
+        }
 
 
+        // Ktor Response - Open a File In Browser
+        get("/fileOpen") {
+            val file = File("files/pic.png")
 
+            call.response.header(
+                HttpHeaders.ContentDisposition,
+                ContentDisposition.Inline.withParameter(
+                    ContentDisposition.Parameters.FileName, "pic.png"
+                ).toString()
+            )
+            call.respondFile(file)
+
+        }
+        
+```
 
