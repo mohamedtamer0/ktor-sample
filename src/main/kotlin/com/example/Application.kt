@@ -6,6 +6,7 @@ import com.example.plugins.*
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.serialization.*
+import org.ktorm.database.Database
 
 
 fun main() {
@@ -13,6 +14,15 @@ fun main() {
         install(ContentNegotiation){
             json()
         }
+
+        val database = Database.connect(
+            url = "jdbc:mysql://localhost:3306/notes",
+            driver = "com.mysql.cj.jdbc.Driver",
+            user = "root",
+            password = "tamer hosny1996"
+        )
+
+
         configureRouting()
         contactUsModule()
     }.start(wait = true)
