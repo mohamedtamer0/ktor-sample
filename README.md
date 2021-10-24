@@ -99,17 +99,15 @@ Query Params: [name, email]
 Name: YourName
 Email: YourEmail8@gmail.com
 
-
 ```
 
 
 ==================================================
 
 - Ktor Url Parameters With PostMan
+
+
 - Routing.kt
-
-
-
 ```kotlin
 
 import io.ktor.routing.*
@@ -139,10 +137,95 @@ http://127.0.0.1:8080/iphones/2
 ```
 
 
+==================================================
+
+- Ktor Request Body With PostMan
+
+- build.gradle.kts
+
+```gradle
+
+plugins {
+    application
+    kotlin("jvm") version "1.5.31" // or kotlin("multiplatform") or any other kotlin plugin
+    kotlin("plugin.serialization") version "1.5.31"
+}
+
+dependencies {
+    implementation("io.ktor:ktor-serialization:$ktor_version")
+}
+
+```
+
+
+- Routing.kt
+```kotlin
+
+import io.ktor.routing.*
+import io.ktor.application.*
+import io.ktor.request.*
+import io.ktor.response.*
+import kotlinx.serialization.*
+
+fun Application.configureRouting() {
+
+    routing {
+        
+        // Request Body
+        post("/login") {
+            val userInfo = call.receive<UserInfo>()
+            println(userInfo)
+            call.respondText("Everything Working Fine!")
+        }
+    }
+}
+
+```
+
+
+```kotlin
+@Serializable
+data class UserInfo(
+    val name:String,
+    val email:String
+)
+
+```
+
+
+- Application.kt
+
+```kotlin
+
+install(ContentNegotiation){
+    json()
+}
+
+```
+
+
+```code
+1- Put This Url In Postman And Send Request
+http://127.0.0.1:8080/login
+
+2- select POST
+
+3- In Body choose format JSON and write json code
+{
+    "name": "YourName",
+    "email": "YourEmail@gmail.com"
+}
+4- Send
+```
 
 
 
+```build
+This Is Result After Send Url In Run Application IntelliJ IDEA Ultimate
 
+UserInfo(name=YourName, email=YourEmail@gmail.com)
+
+```
 
 
 
