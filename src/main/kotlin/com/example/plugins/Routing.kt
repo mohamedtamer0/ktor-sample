@@ -40,7 +40,6 @@ fun Application.configureRouting() {
         }
 
 
-
         // Request Body
         post("/login") {
             val userInfo = call.receive<UserInfo>()
@@ -50,7 +49,7 @@ fun Application.configureRouting() {
 
 
         // Ktor Response - Downloading a File
-        get("/fileDownload"){
+        get("/fileDownload") {
             val file = File("files/pic.png")
 
             call.response.header(
@@ -63,7 +62,7 @@ fun Application.configureRouting() {
 
         }
 
-        get("/fileOpen"){
+        get("/fileOpen") {
             val file = File("files/pic.png")
 
             call.response.header(
@@ -81,6 +80,6 @@ fun Application.configureRouting() {
 
 @Serializable
 data class UserInfo(
-    val name:String,
-    val email:String
+    val name: String,
+    val email: String
 )
