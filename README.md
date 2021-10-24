@@ -66,6 +66,7 @@ fun Application.configureRouting() {
             println("URI: ${call.request.uri}")
             println("Headers: ${call.request.headers.names()}")
 
+            // Request
             println("User-Agent: ${call.request.headers["User-Agent"]}")
             println("Accept: ${call.request.headers["Accept"]}")
             println("Query Params: ${call.request.queryParameters.names()}")
@@ -100,4 +101,57 @@ Email: YourEmail8@gmail.com
 
 
 ```
+
+
+==================================================
+
+- Ktor Url Parameters With PostMan
+- Routing.kt
+
+
+
+```kotlin
+
+import io.ktor.routing.*
+import io.ktor.application.*
+import io.ktor.request.*
+import io.ktor.response.*
+
+
+fun Application.configureRouting() {
+
+    routing {
+        
+        // Url Parameters
+        get("iphones/{page}") {
+            val pageNumber = call.parameters["page"]
+            call.respondText("Your are no Page number : $pageNumber")
+        }
+    }
+}
+
+```
+
+
+```code
+Put This Url In Postman And Send Request
+http://127.0.0.1:8080/iphones/2
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
