@@ -227,12 +227,53 @@ UserInfo(name=YourName, email=YourEmail@gmail.com)
 
 ```
 
+==================================================
+
+- Ktor Response - Sending JSON Response With PostMan
 
 
+- Routing.kt
+
+```kotlin
+
+//GatewayTimeout
+call.respondText("Wrong!!!!!!!!!", status = HttpStatusCode.GatewayTimeout)
+
+// OR NotFound
+call.respondText("Not Found !!!!!!!!!", status = HttpStatusCode.NotFound)
+```
+
+- if you want Sending JSON Response To PostMan
 
 
+```kotlin
+@Serializable
+data class UserInfo(
+    val name:String,
+    val email:String
+)
+
+```
 
 
+```kotlin
+    val responseObj = UserInfo("YourName","YourEmail@gmail.com")
+    call.respond(responseObj)
+
+```
+
+```code
+In PostMan
+Select GET and Put This Url http://127.0.0.1:8080/
+and SEND
+The Result in PostMan
+=======
+{
+    "name": "YourName",
+    "email": "YourEmail@gmail.com"
+}
+
+```
 
 
 
