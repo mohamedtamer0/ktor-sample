@@ -46,4 +46,58 @@ fun Application.configureRouting() {
 * Runs embedded web server on `localhost:8080`
 * Installs routing and responds with `Hello, world!` when receiving a GET http request for the root path
 
+==================================================
+
+- Ktor Request API With PostMan
+- Routing.kt
+
+```kotlin
+
+import io.ktor.routing.*
+import io.ktor.application.*
+import io.ktor.request.*
+import io.ktor.response.*
+
+
+fun Application.configureRouting() {
+
+    routing {
+        get("/") {
+            println("URI: ${call.request.uri}")
+            println("Headers: ${call.request.headers.names()}")
+
+            println("User-Agent: ${call.request.headers["User-Agent"]}")
+            println("Accept: ${call.request.headers["Accept"]}")
+            println("Query Params: ${call.request.queryParameters.names()}")
+            println("Name: ${call.request.queryParameters["name"]}")
+            println("Email: ${call.request.queryParameters["email"]}")
+
+
+            call.respondText("Hello Ktor!")
+        }
+    }
+}
+
+```
+
+
+```code
+Put This Url In Postman And Send Request
+http://127.0.0.1:8080?name=Your Name&email=YourEmail8@gmail.com
+```
+
+
+```build
+This Is Result After Send Url In Run Application IntelliJ IDEA Ultimate
+
+URI: /?name=YourName&email=YourEmail8@gmail.com
+Headers: [User-Agent, Accept, Postman-Token, Host, Accept-Encoding, Connection]
+User-Agent: PostmanRuntime/7.28.4
+Accept: */*
+Query Params: [name, email]
+Name: YourName
+Email: YourEmail8@gmail.com
+
+
+```
 
