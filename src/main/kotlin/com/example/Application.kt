@@ -8,9 +8,7 @@ import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.serialization.*
 import org.ktorm.database.Database
-import org.ktorm.dsl.from
-import org.ktorm.dsl.insert
-import org.ktorm.dsl.select
+import org.ktorm.dsl.*
 
 
 fun main() {
@@ -27,22 +25,39 @@ fun main() {
         )
 
 
-        // Inserting Values
-        database.insert(NotesEntity) {
-            set(it.note, "study Ktor")
-        }
-        database.insert(NotesEntity) {
-            set(it.note, "study JetPackCompose")
-        }
-        database.insert(NotesEntity) {
-            set(it.note, "study GoLanguage")
+//        // Inserting Values
+//        database.insert(NotesEntity) {
+//            set(it.note, "study Ktor")
+//        }
+//        database.insert(NotesEntity) {
+//            set(it.note, "study JetPackCompose")
+//        }
+//        database.insert(NotesEntity) {
+//            set(it.note, "study GoLanguage")
+//        }
+//
+
+
+//        // Reading Value From Database
+//        val notes = database.from(NotesEntity)
+//            .select()
+//        for (row in notes) {
+//            println("${row[NotesEntity.id]}: ${row[NotesEntity.note]}")
+//        }
+
+
+
+        // Updating And Deleting Values From A DB
+        database.update(NotesEntity) {
+            set(it.note, "Learning Ktor")
+            where {
+                it.id eq 1
+                it.id eq 2
+            }
         }
 
-        // Reading Value From Database
-        var notes = database.from(NotesEntity)
-            .select()
-        for (row in notes){
-            println("${row[NotesEntity.id]}: ${row[NotesEntity.note]}")
+        database.delete(NotesEntity){
+            it.id eq 3
         }
 
 
