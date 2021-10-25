@@ -16,13 +16,7 @@ fun main() {
         install(ContentNegotiation) {
             json()
         }
-        //MYSQLl
-        val database = Database.connect(
-            url = "jdbc:mysql://localhost:3306/notes",
-            driver = "com.mysql.cj.jdbc.Driver",
-            user = "root",
-            password = "tamer hosny1996"
-        )
+
 
 
 //        // Inserting Values
@@ -47,18 +41,18 @@ fun main() {
 
 
 
-        // Updating And Deleting Values From A DB
-        database.update(NotesEntity) {
-            set(it.note, "Learning Ktor")
-            where {
-                it.id eq 1
-                it.id eq 2
-            }
-        }
-
-        database.delete(NotesEntity){
-            it.id eq 3
-        }
+//        // Updating And Deleting Values From A DB
+//        database.update(NotesEntity) {
+//            set(it.note, "Learning Ktor")
+//            where {
+//                it.id eq 1
+//                it.id eq 2
+//            }
+//        }
+//
+//        database.delete(NotesEntity){
+//            it.id eq 3
+//        }
 
 
 
