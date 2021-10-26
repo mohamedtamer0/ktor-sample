@@ -4,6 +4,7 @@ import com.example.entities.NotesEntity
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import com.example.plugins.*
+import com.example.routing.authenticationRoutes
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.serialization.*

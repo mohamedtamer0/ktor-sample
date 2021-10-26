@@ -1,5 +1,6 @@
 package com.example.plugins
 
+import com.example.routing.authenticationRoutes
 import com.example.routing.notesRoutes
 import io.ktor.routing.*
 import io.ktor.application.*
@@ -80,7 +81,7 @@ fun Application.configureRouting() {
 
 
     notesRoutes()
-
+    authenticationRoutes()
 }
 
 @Serializable
